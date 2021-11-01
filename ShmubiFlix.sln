@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMediaControls", "Tutorial On WPF\CustomMediaControls.csproj", "{0235D745-FC22-4B07-9399-169206665039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomControls\CustomControls.csproj", "{F130EF8B-8867-40AA-87B8-BEAA62E41677}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0235D745-FC22-4B07-9399-169206665039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0235D745-FC22-4B07-9399-169206665039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0235D745-FC22-4B07-9399-169206665039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0235D745-FC22-4B07-9399-169206665039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F130EF8B-8867-40AA-87B8-BEAA62E41677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F130EF8B-8867-40AA-87B8-BEAA62E41677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F130EF8B-8867-40AA-87B8-BEAA62E41677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F130EF8B-8867-40AA-87B8-BEAA62E41677}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A3C838C-7A84-4B09-89FA-CF365F231E49}
+	EndGlobalSection
+EndGlobal

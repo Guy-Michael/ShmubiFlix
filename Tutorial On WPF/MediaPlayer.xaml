@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="CustomMediaControls.MediaPlayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomMediaControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <MediaElement x:Name="Player" LoadedBehavior="Manual" UnloadedBehavior="Manual"/>
+        <Button x:Name="playButton" Width="30" Height="30"/>
+        <Button x:Name="ButtonNextEpisode" Content="Next" Width="30" Height="30" Margin="501,210,269,210.286" />
+        <Button x:Name="ButtonPrevEpisode" Content="Prev" Width="30" Height="30" Margin="252,210,518,210.286" />
+        <Button x:Name="ButtonSkipBackward" Content="back" Width="30" Height="30" Margin="309,210,461,210.286" />
+        <Button x:Name="ButtonSkipForward" Content="for" Width="30" Height="30" Margin="447,210,323,210.286" />
+
+    </Grid>
+</UserControl>
