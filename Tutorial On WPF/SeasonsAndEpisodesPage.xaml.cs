@@ -24,7 +24,6 @@ namespace CustomMediaControls
 	{
 		private string m_FullPath;
 		private string[] m_CurrentSeasonEpisodeList;
-		SeasonMetaFile m_MetaFile;
 
 		public SeasonsAndEpisodesPage(string i_SeriesName)
 		{
@@ -47,12 +46,6 @@ namespace CustomMediaControls
 				seasonX.Click += button_Season_Pressed;
 				SeasonStack.Children.Add(seasonX);
 			}
-		}
-
-		public void button_Season_Pressed(object sender, EventArgs args)
-		{
-			string seasonName = (sender as Button).Content.ToString();
-			LoadSeasonEpisodes(seasonName);
 		}
 
 		public void LoadSeasonEpisodes(string i_SeasonName)
@@ -78,6 +71,14 @@ namespace CustomMediaControls
 				EpisodeX.Click += button_Episode_Click;
 				EpisodeStack.Children.Add(EpisodeX);
 			}
+		}
+
+		public void button_Season_Pressed(object sender, EventArgs args)
+		{
+			string seasonName = (sender as Button).Content.ToString();
+			Utils.SeriesMetaFile file = new Utils.SeriesMetaFile(m_FullPath);
+			file.SetLastPlayedSeason(seasonName);
+			LoadSeasonEpisodes(seasonName);
 		}
 
 		public void button_Episode_Click(object sender, EventArgs args)

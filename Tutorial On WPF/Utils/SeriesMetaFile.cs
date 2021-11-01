@@ -20,7 +20,6 @@ namespace CustomMediaControls.Utils
 			string metaFileName = folderName + ".meta";
 			m_PathToMetaFile = Path.Combine(m_PathToFolder, metaFileName);
 
-			MessageBox.Show("Path to meta: " + m_PathToMetaFile);
 			checkSeriesMetaData();
 		}
 
@@ -37,24 +36,55 @@ namespace CustomMediaControls.Utils
 
 		private void generateSeriesMetaData()
 		{
-			//MessageBox.Show("generating the metafile.");
-			//string folderName = System.IO.Path.GetDirectoryName(m_PathToMetaFile);
-			//string pathToMetaFile = System.IO.Path.Combine(m_PathToMetaFile, folderName + ".meta");
-
-			//MessageBox.Show("Path to current file is:" + pathToMetaFile);
-
 			StreamWriter metaStream = new StreamWriter(File.Create(m_PathToMetaFile));
 
 			string titleString = "Title:" + Path.GetFileName(m_PathToFolder);
 			string numberOfSeasonsString;
-
+			string lastPlayedSeasonString;
 			int numberOfSeries = Directory.GetDirectories(m_PathToFolder).Length;
 
 			numberOfSeasonsString = "Number-of-seasons:" + numberOfSeries.ToString();
+			lastPlayedSeasonString = "Last-played-season:" + "Season 1";
+			
 
 			metaStream.WriteLine(titleString);
 			metaStream.WriteLine(numberOfSeasonsString);
+			metaStream.WriteLine(lastPlayedSeasonString);
 			metaStream.Close();
+		}
+
+		public void SetLastPlayedSeason(string i_SeasonName)
+		{			
+			
+			//MessageBox.Show(m_PathToFolder);
+			string[] lines = File.ReadAllLines(m_PathToMetaFile);
+			string chosenLine = string.Empty;
+			int lineIndex = 0;
+			
+			foreach(string line in lines)
+			{
+				if (line.Contains("Last-played-season"))
+				{
+					chosenLine = line;
+					break;
+				}
+
+				lineIndex++;
+			}
+
+
+			if (chosenLine.Equals(string.Empty))
+			{
+				return;
+			}
+
+			int colonIndex = chosenLine.LastIndexOf(":");
+			string oldSeason = chosenLine.Substring(colonIndex + 1);
+			chosenLine = chosenLine.Replace(oldSeason, i_SeasonName);
+
+			//MessageBox.Show(chosenLine);
+			lines[lineIndex] = chosenLine;
+			File.WriteAllLines(m_PathToMetaFile, lines);
 		}
 	}
 }

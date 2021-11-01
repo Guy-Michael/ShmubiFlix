@@ -66,7 +66,6 @@ namespace CustomMediaControls
 			string[] folders = Directory.GetDirectories(m_FullPath);
 			foreach (string folderPath in folders)
 			{
-				MessageBox.Show(folderPath);
 				Utils.SeriesMetaFile file = new Utils.SeriesMetaFile(folderPath);
 				//string[] metaFile = Directory.GetFiles(folderPath, "*.meta");
 
@@ -87,11 +86,9 @@ namespace CustomMediaControls
 
 		private void generateMetadataForASeries(string i_PathToSeriesFolder)
 		{
-			MessageBox.Show("generating the metafile.");
 			string folderName = System.IO.Path.GetFileName(i_PathToSeriesFolder);
 			string pathToMetaFile = System.IO.Path.Combine(i_PathToSeriesFolder, folderName + ".meta");
 
-			MessageBox.Show("Path to current file is:" + pathToMetaFile);
 
 			StreamWriter metaStream = new StreamWriter(File.Create(pathToMetaFile));
 
