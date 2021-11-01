@@ -66,6 +66,7 @@ namespace CustomMediaControls
 			string[] folders = Directory.GetDirectories(m_FullPath);
 			foreach (string folderPath in folders)
 			{
+				MessageBox.Show(folderPath);
 				Utils.SeriesMetaFile file = new Utils.SeriesMetaFile(folderPath);
 				//string[] metaFile = Directory.GetFiles(folderPath, "*.meta");
 
