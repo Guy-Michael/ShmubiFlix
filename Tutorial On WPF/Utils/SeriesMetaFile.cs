@@ -56,7 +56,6 @@ namespace CustomMediaControls.Utils
 		public void SetLastPlayedSeason(string i_SeasonName)
 		{			
 			
-			//MessageBox.Show(m_PathToFolder);
 			string[] lines = File.ReadAllLines(m_PathToMetaFile);
 			string chosenLine = string.Empty;
 			int lineIndex = 0;
@@ -82,7 +81,6 @@ namespace CustomMediaControls.Utils
 			string oldSeason = chosenLine.Substring(colonIndex + 1);
 			chosenLine = chosenLine.Replace(oldSeason, i_SeasonName);
 
-			//MessageBox.Show(chosenLine);
 			lines[lineIndex] = chosenLine;
 			File.WriteAllLines(m_PathToMetaFile, lines);
 		}

@@ -86,6 +86,11 @@ namespace CustomMediaControls
 			int episodeNumber = (sender as EpisodeButton).EpisodeNumber;
 			List<string> episodeList = m_CurrentSeasonEpisodeList.ToList<string>();
 
+			string pathToSeason = Path.GetDirectoryName(episodeList[0]);
+			Utils.SeasonMetaFile file = new Utils.SeasonMetaFile(pathToSeason);
+			file.SetLastPlayedEpisode("E" + episodeNumber);
+
+
 			PlayerPage player = new PlayerPage();
 			player.SetMedia(episodeList, episodeNumber);
 			NavigationService.Navigate(player);

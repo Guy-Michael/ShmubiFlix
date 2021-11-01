@@ -44,6 +44,9 @@ namespace CustomMediaControls.Utils
 			List<string> episodeList = Directory.GetFiles(m_PathToFolder, "*.mp4").ToList();
 			episodeList.Sort();
 
+			string lastPlayedEpisodeString = "Last-played-episode:" + "E1";
+			metaStream.WriteLine(lastPlayedEpisodeString);
+
 			metaStream.WriteLine("*** Start Positions Section ***");
 			foreach (string episode in episodeList)
 			{
@@ -54,6 +57,39 @@ namespace CustomMediaControls.Utils
 			}
 			metaStream.WriteLine("*** End Position Section ***");
 			metaStream.Close();
+		}
+
+		public void SetLastPlayedEpisode(string i_NewEpisode)
+		{
+			List<string> lines = extractDataFromMetaFile(m_PathToMetaFile);
+
+			string chosenLine = string.Empty;
+			int lineIndex = 0;
+			foreach(string line in lines)
+			{
+				if (line.Contains("Last-played-episode"))
+				{
+					chosenLine = line;
+					break;
+				}
+
+				lineIndex++;
+			}
+
+			if (chosenLine.Equals(string.Empty))
+			{
+				return;
+			}
+
+			int colonIndex = chosenLine.LastIndexOf(":");
+			string oldEpisode = chosenLine.Substring(colonIndex + 1);
+
+			chosenLine = chosenLine.Replace(oldEpisode, i_NewEpisode);
+
+			lines[lineIndex] = chosenLine;
+			File.WriteAllLines(m_PathToMetaFile, lines);
+
+
 		}
 
 
