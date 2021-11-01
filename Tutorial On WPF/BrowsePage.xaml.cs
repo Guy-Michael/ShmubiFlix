@@ -66,20 +66,21 @@ namespace CustomMediaControls
 			string[] folders = Directory.GetDirectories(m_FullPath);
 			foreach (string folderPath in folders)
 			{
-				string[] metaFile = Directory.GetFiles(folderPath, "*.meta");
+				Utils.SeriesMetaFile file = new Utils.SeriesMetaFile(folderPath);
+				//string[] metaFile = Directory.GetFiles(folderPath, "*.meta");
 
-				if (metaFile.Length != 0)
-				{
-					//Do nothing for now.
-					//parseMetadata(metaFile[0]);
-				}
+				//if (metaFile.Length != 0)
+				//{
+				//	//Do nothing for now.
+				//	//parseMetadata(metaFile[0]);
+				//}
 
-				else
-				{
-					MessageBox.Show("Meta file is absent in " + folderPath);
-					generateMetadataForASeries(folderPath);
+				//else
+				//{
+				//	MessageBox.Show("Meta file is absent in " + folderPath);
+				//	generateMetadataForASeries(folderPath);
 
-				}
+				//}
 			}
 		}
 

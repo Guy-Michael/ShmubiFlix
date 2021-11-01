@@ -11,40 +11,44 @@ namespace CustomMediaControls.Utils
 	class SeriesMetaFile
 	{
 		string m_PathToMetaFile;
+		string m_PathToFolder;
 
-		public SeriesMetaFile(string i_PathToMetaFile)
+		public SeriesMetaFile(string i_PathToFolder)
 		{
-			m_PathToMetaFile = i_PathToMetaFile;
-			checkSeasonMetaData();
+			m_PathToFolder = i_PathToFolder;
+			string folderName = Path.GetFileName(m_PathToFolder);
+			string metaFileName = folderName + ".meta";
+			m_PathToMetaFile = Path.Combine(m_PathToFolder, metaFileName);
+			checkSeriesMetaData();
 		}
 
-		private void checkSeasonMetaData()
+		private void checkSeriesMetaData()
 		{
-			string directoryPath = Path.GetDirectoryName(m_PathToMetaFile);
-			string[] metaFile = Directory.GetFiles(directoryPath, "*.meta");
+			//string directoryPath = Path.GetDirectoryName(m_PathToMetaFile);
+			//string[] metaFile = Directory.GetFiles(directoryPath, "*.meta");
 			
-			if (metaFile.Length == 0)
+			if (!File.Exists(m_PathToMetaFile))
 			{
-				generateSeasonMetaData();
+				generateSeriesMetaData();
 			}
 		}
 
-		private void generateSeasonMetaData()
+		private void generateSeriesMetaData()
 		{
-			MessageBox.Show("generating the metafile.");
+			//MessageBox.Show("generating the metafile.");
 			string folderName = System.IO.Path.GetDirectoryName(m_PathToMetaFile);
 			string pathToMetaFile = System.IO.Path.Combine(m_PathToMetaFile, folderName + ".meta");
 
-			MessageBox.Show("Path to current file is:" + pathToMetaFile);
+			//MessageBox.Show("Path to current file is:" + pathToMetaFile);
 
 			StreamWriter metaStream = new StreamWriter(File.Create(pathToMetaFile));
 
 			string titleString = "Title:" + folderName;
 			string numberOfSeasonsString;
 
-			int numberOfSeries = Directory.GetDirectories(m_PathToMetaFile).Length;
+			int numberOfSeries = Directory.GetDirectories(m_PathToFolder).Length;
 
-			numberOfSeasonsString = "Number-of-series:" + numberOfSeries.ToString();
+			numberOfSeasonsString = "Number-of-seasons:" + numberOfSeries.ToString();
 
 			metaStream.WriteLine(titleString);
 			metaStream.WriteLine(numberOfSeasonsString);
