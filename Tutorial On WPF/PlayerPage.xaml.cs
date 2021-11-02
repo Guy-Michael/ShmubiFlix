@@ -32,7 +32,6 @@ namespace CustomMediaControls
 		{
 			InitializeComponent();
 			m_MetaFile = new Utils.SeasonMetaFile(@"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison\That 70s Show\Season 1");
-			//m_MetaFile = new Utils.SeasonMetaFile(@"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison\That 70s Show\Season 1\Season 1.meta");
 			metaStopWatch = new System.Timers.Timer();
 			
 			metaStopWatch.Interval = 5000;
