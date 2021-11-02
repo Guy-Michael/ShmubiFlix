@@ -28,16 +28,29 @@ namespace CustomMediaControls
 		System.Timers.Timer metaStopWatch;
 		Utils.SeasonMetaFile m_MetaFile;
 
-		public PlayerPage()
+		public PlayerPage(List<string> i_EpisodeList, int i_EpisodeNumber)
 		{
 			InitializeComponent();
-			m_MetaFile = new Utils.SeasonMetaFile(@"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison\That 70s Show\Season 1");
+			initAndStartStopwatch();
+
+
+			initMetaFile(i_EpisodeList[0]);
+			SetMedia(i_EpisodeList, i_EpisodeNumber);
+			InitEventListeners();
+		}
+
+		private void initMetaFile(string i_PathToEpisode1)
+		{
+			string pathToFolder = System.IO.Path.GetDirectoryName(i_PathToEpisode1);
+			m_MetaFile = new Utils.SeasonMetaFile(pathToFolder);
+		}
+
+		private void initAndStartStopwatch()
+		{
 			metaStopWatch = new System.Timers.Timer();
-			
+
 			metaStopWatch.Interval = 5000;
 			metaStopWatch.Start();
-
-			InitEventListeners();
 		}
 
 		private void metaTimer_Elapsed(object sender, EventArgs args)

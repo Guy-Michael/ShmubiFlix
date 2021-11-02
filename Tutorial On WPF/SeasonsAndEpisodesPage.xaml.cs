@@ -89,10 +89,7 @@ namespace CustomMediaControls
 			string pathToSeason = Path.GetDirectoryName(episodeList[0]);
 			Utils.SeasonMetaFile file = new Utils.SeasonMetaFile(pathToSeason);
 			file.SetLastPlayedEpisode("E" + episodeNumber);
-
-			MessageBox.Show(m_FullPath);
-			PlayerPage player = new PlayerPage();
-			player.SetMedia(episodeList, episodeNumber);
+			PlayerPage player = new PlayerPage(episodeList, episodeNumber);
 			NavigationService.Navigate(player);
 
 		}
