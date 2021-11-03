@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BrowsePage">
 
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -22,30 +22,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <local:Thumbnail x:Name="thumbnail1" Grid.Row="0" Grid.Column="0">
-            <local:Thumbnail.Background>
-                <ImageBrush ImageSource="Resources/Thumbnails/Orange Is The New Black.jpg"/>
-            </local:Thumbnail.Background>
-        </local:Thumbnail>
-        <local:Thumbnail x:Name="thumbnail2" Grid.Row="0" Grid.Column="1">
-            <local:Thumbnail.Background>
-                <ImageBrush ImageSource="Resources/Thumbnails/gossip girl.jpg"/>
-            </local:Thumbnail.Background>
-        </local:Thumbnail>
-        <local:Thumbnail x:Name="thumbnail3" Grid.Row="0" Grid.Column="2">
-            <local:Thumbnail.OpacityMask>
-                <ImageBrush ImageSource="Resources/Thumbnails/that 70 show.jpg"/>
-            </local:Thumbnail.OpacityMask>
-            <local:Thumbnail.Foreground>
-                <ImageBrush ImageSource="Resources/Thumbnails/that 70 show.jpg"/>
-            </local:Thumbnail.Foreground>
-            <local:Thumbnail.BorderBrush>
-                <ImageBrush ImageSource="Resources/Thumbnails/that 70 show.jpg"/>
-            </local:Thumbnail.BorderBrush>
-            <local:Thumbnail.Background>
-                <ImageBrush ImageSource="Resources/Thumbnails/that 70 show.jpg"/>
-            </local:Thumbnail.Background>
-        </local:Thumbnail>
+        <local:Thumbnail x:Name="thumbnail1" Grid.Row="0" Grid.Column="0" Background="#FF646464"/>
+        <local:Thumbnail x:Name="thumbnail2" Grid.Row="0" Grid.Column="1" Background="#FF646464"/>
+        <local:Thumbnail x:Name="thumbnail3" Grid.Row="0" Grid.Column="2" Background="#FF646464" BorderBrush="#FF646464" Foreground="#FF646464" OpacityMask="#FF646464"/>
         <Button Content="Set Root Folder" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="60,74.429,0,0" Grid.Row="2" Width="auto" Click="Button_Click"/>
 
     </Grid>

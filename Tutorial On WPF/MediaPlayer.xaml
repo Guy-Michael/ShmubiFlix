@@ -8,11 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <MediaElement x:Name="Player" LoadedBehavior="Manual" UnloadedBehavior="Manual" Stretch="Fill"/>
-        <Button x:Name="playButton" Width="30" Height="30"/>
-        <Button x:Name="ButtonNextEpisode" Content="Next" Width="30" Height="30" Margin="501,210,269,210.286" />
-        <Button x:Name="ButtonPrevEpisode" Content="Prev" Width="30" Height="30" Margin="252,210,518,210.286" />
-        <Button x:Name="ButtonSkipBackward" Content="back" Width="30" Height="30" Margin="309,210,461,210.286" />
-        <Button x:Name="ButtonSkipForward" Content="for" Width="30" Height="30" Margin="447,210,323,210.286" />
+        <Button x:Name="playButton" Width="30" Height="30" Visibility="Hidden"/>
+        <Button x:Name="ButtonNextEpisode" Content="Next" Width="30" Height="30" Margin="501,210,269,210.286" Visibility="Hidden" />
+        <Button x:Name="ButtonPrevEpisode" Content="Prev" Width="30" Height="30" Margin="252,210,518,210.286" Visibility="Hidden" />
+        <Button x:Name="ButtonSkipBackward" Content="back" Width="30" Height="30" Margin="309,210,461,210.286" Visibility="Hidden" />
+        <Button x:Name="ButtonSkipForward" Content="for" Width="30" Height="30" Margin="447,210,323,210.286" Visibility="Hidden" />
         <Slider x:Name="slider" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Maximum="1" SmallChange="0.01" LargeChange="0.1" Visibility="Hidden"/>
 
     </Grid>

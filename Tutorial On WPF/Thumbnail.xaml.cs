@@ -31,6 +31,9 @@ namespace CustomMediaControls
 		public void InitThumbnail(string i_FolderPath)
 		{
 			string[] fileName = Directory.GetFiles(i_FolderPath, "*.meta");
+			string[] thumbnailFolders = Directory.GetDirectories(i_FolderPath, "*" + "Thumbnails" + "*");
+
+			string[] thumbnails = Directory.GetFiles(thumbnailFolders[0]);
 
 			if (fileName.Length != 0)
 			{
@@ -41,6 +44,12 @@ namespace CustomMediaControls
 					metaData[i] = metaData[i].Substring(index + 1);
 				}
 				Content = metaData[0];
+
+				ImageBrush imageBrush = new ImageBrush();
+				BitmapImage image = new BitmapImage(new Uri(thumbnails[0]));
+				imageBrush.ImageSource = image;
+				Background = imageBrush;
+
 			}
 		}
 	}

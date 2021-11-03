@@ -25,10 +25,11 @@ namespace CustomMediaControls
 		private string m_FullPath;
 		private string[] m_CurrentSeasonEpisodeList;
 
-		public SeasonsAndEpisodesPage(string i_SeriesName)
+		public SeasonsAndEpisodesPage(string i_FolderPath, string i_SeriesName)
 		{
 			InitializeComponent();
-			m_FullPath = @"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison";
+			m_FullPath = i_FolderPath;
+			//m_FullPath = @"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison";
 			LoadSeries(i_SeriesName);
 		}
 

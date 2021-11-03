@@ -35,6 +35,14 @@ namespace CustomMediaControls
 			checkForSeriesMetaFiles();
 			List<Thumbnail> thumbnails = new List<Thumbnail>();
 
+			string[] directories = Directory.GetDirectories(m_FullPath);
+
+			//for(int i = 0; i < directories.Length; i++)
+			//{
+			//	Thumbnail nail = new Thumbnail();
+			//	nail.Click += thumbnail_LoadSeries;
+			//	thumbnails.Add(nail);
+			//}
 			thumbnail1.Click += thumbnail_LoadSeries;
 			thumbnails.Add(thumbnail1);
 
@@ -45,8 +53,8 @@ namespace CustomMediaControls
 			thumbnails.Add(thumbnail3);
 
 			//Choose root folder.
-			IEnumerable<string> showNames = Directory.EnumerateDirectories(m_FullPath);
-			List<string> list = showNames.ToList();
+			List<string> list = Directory.EnumerateDirectories(m_FullPath).ToList();
+			
 			
 			for(int i = 0; i < thumbnails.Count; i++)
 			{
@@ -57,7 +65,7 @@ namespace CustomMediaControls
 		public void thumbnail_LoadSeries(object sender, EventArgs args)
 		{
 			string name = (sender as Thumbnail).Content.ToString();
-			SeasonsAndEpisodesPage page = new SeasonsAndEpisodesPage(name);
+			SeasonsAndEpisodesPage page = new SeasonsAndEpisodesPage(m_FullPath, name);
 			NavigationService.GetNavigationService(this).Navigate(page);
 		}
 
@@ -68,20 +76,6 @@ namespace CustomMediaControls
 			foreach (string folderPath in folders)
 			{
 				Utils.SeriesMetaFile file = new Utils.SeriesMetaFile(folderPath);
-				//string[] metaFile = Directory.GetFiles(folderPath, "*.meta");
-
-				//if (metaFile.Length != 0)
-				//{
-				//	//Do nothing for now.
-				//	//parseMetadata(metaFile[0]);
-				//}
-
-				//else
-				//{
-				//	MessageBox.Show("Meta file is absent in " + folderPath);
-				//	generateMetadataForASeries(folderPath);
-
-				//}
 			}
 		}
 

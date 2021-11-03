@@ -119,7 +119,7 @@ namespace CustomMediaControls
 		{
 			m_FadeInProgress = true;
 			int seconds = 1;
-			playButton.Visibility = Visibility.Visible;
+			//playButton.Visibility = Visibility.Visible;
 			while (m_ControlsOpacity++ < 100)
 			{
 				if (m_TaskCancellationToken.IsCancellationRequested)
