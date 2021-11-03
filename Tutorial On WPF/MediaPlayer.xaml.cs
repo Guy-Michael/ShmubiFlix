@@ -65,6 +65,23 @@ namespace CustomMediaControls
 			playButton.Click += buttonPlay_Click;
 			playButton.Click += CancelToken;
 
+			Player.MouseUp += mouse_Click;
+
+		}
+
+		private void mouse_Click(object sender, MouseButtonEventArgs e)
+		{
+			if (m_IsVideoPlaying)
+			{
+				Player.Pause();
+			}
+
+			else
+			{
+				Player.Play();
+			}
+
+			m_IsVideoPlaying = !m_IsVideoPlaying;
 		}
 
 		public void InitDispatcherTimer()
@@ -185,6 +202,11 @@ namespace CustomMediaControls
 		public void SkipToEpisode(Uri i_Source)
 		{
 			Player.Source = i_Source;
+		}
+
+		public bool IsPlaying()
+		{
+			return m_IsVideoPlaying;
 		}
 	
 	}

@@ -37,6 +37,7 @@ namespace CustomMediaControls
 			initMetaFile(i_EpisodeList[0]);
 			SetMedia(i_EpisodeList, i_EpisodeNumber);
 			InitEventListeners();
+			//fullScreen();
 		}
 
 		private void initMetaFile(string i_PathToEpisode1)
@@ -68,15 +69,50 @@ namespace CustomMediaControls
 			});
 		}
 
+		public void player_DoubleClick(object sender, EventArgs args)
+		{
+			toggleFullScreen();
+		}
+
+		private void toggleFullScreen()
+		{
+			Window window = Window.GetWindow(this);
+
+
+			if (window.WindowState == WindowState.Maximized)
+			{
+				fullScreenOff(window);
+			}
+
+			else
+			{
+				fullScreenOn(window);
+			}
+		}
+
+		private static void fullScreenOn(Window window)
+		{
+			window.WindowStyle = WindowStyle.None;
+			window.WindowState = WindowState.Maximized;
+		}
+
+		private static void fullScreenOff(Window window)
+		{
+			window.WindowStyle = WindowStyle.SingleBorderWindow;
+			window.WindowState = WindowState.Normal;
+		}
+
 		public void InitEventListeners()
 		{
 			Player.ButtonPrevEpisode.Click += button_PreviousEpisode;
 			Player.ButtonNextEpisode.Click += button_NextEpisode;
 			Player.ButtonSkipBackward.Click += button_SkipBackward;
 			Player.ButtonSkipForward.Click += button_SkipForward;
+			Player.MouseDoubleClick += player_DoubleClick;
 			metaStopWatch.Elapsed += metaTimer_Elapsed;
 
 		}
+
 		public void SetMedia(List<String> i_EpisodeList, int i_EpisodeNumber)
 		{
 			EpisodeList = i_EpisodeList;
@@ -100,12 +136,19 @@ namespace CustomMediaControls
 
 		public void button_PreviousEpisode(object sender, EventArgs args)
 		{
+			if (CurrentEpisodeNumber - 1 < 0)
+				return;
+
 			Player.SkipToEpisode(EpisodeList[--CurrentEpisodeNumber]);
 		}
 
 		public void button_NextEpisode(object sender, EventArgs args)
 		{
+			if (CurrentEpisodeNumber + 1 > EpisodeList.Count)
+				return;
+
 			Player.SkipToEpisode(EpisodeList[++CurrentEpisodeNumber]);
+
 		}
 	}
 }
