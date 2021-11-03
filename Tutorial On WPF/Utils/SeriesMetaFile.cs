@@ -84,5 +84,39 @@ namespace CustomMediaControls.Utils
 			lines[lineIndex] = chosenLine;
 			File.WriteAllLines(m_PathToMetaFile, lines);
 		}
+
+		public string GetLastSeasonPlayed()
+		{
+
+			string[] lines = File.ReadAllLines(m_PathToMetaFile);
+			string chosenLine = string.Empty;
+			int lineIndex = 0;
+
+			foreach (string line in lines)
+			{
+				if (line.Contains("Last-played-season"))
+				{
+					chosenLine = line;
+					break;
+				}
+
+				lineIndex++;
+			}
+
+
+			if (chosenLine.Equals(string.Empty))
+			{
+				return "";
+			}
+
+			int colonIndex = chosenLine.LastIndexOf(":");
+			string currentSeason = chosenLine.Substring(colonIndex + 1);
+
+			return currentSeason;
+		}
+
+		//******************************************STATIC SECTION************************//
+
+
 	}
 }

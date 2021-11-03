@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -28,29 +28,10 @@
         <ScrollViewer Grid.Row="1" Grid.Column="1">
             <StackPanel x:Name="SeasonStack" Grid.Column="1" Grid.Row="1" CanVerticallyScroll="True"/>
         </ScrollViewer>
-       
 
-        <!--<Grid x:Name="SeriesGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
+        <Button x:Name="PlayLastButton" Grid.Row="2" Grid.Column="1" Height="30" Content="Play Last Episode" Click="PlayLastButton_Click"/>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Column="2" Grid.RowSpan="8"/>-->
+
+        <StackPanel Grid.Column="2" Grid.RowSpan="8"/>
     </Grid>
 </Page>

@@ -86,12 +86,30 @@ namespace CustomMediaControls
 			int episodeNumber = (sender as EpisodeButton).EpisodeNumber;
 			List<string> episodeList = m_CurrentSeasonEpisodeList.ToList<string>();
 
-			string pathToSeason = Path.GetDirectoryName(episodeList[0]);
-			Utils.SeasonMetaFile file = new Utils.SeasonMetaFile(pathToSeason);
-			file.SetLastPlayedEpisode("E" + episodeNumber);
-			PlayerPage player = new PlayerPage(episodeList, episodeNumber);
-			NavigationService.Navigate(player);
+			launchPlayerPage(episodeList, episodeNumber);
+		}
 
+		private void PlayLastButton_Click(object sender, RoutedEventArgs e)
+		{
+			Utils.SeriesMetaFile seriesMeta = new Utils.SeriesMetaFile(m_FullPath);
+
+			string lastSeasonString = seriesMeta.GetLastSeasonPlayed();
+
+			string seasonPath = Path.Combine(m_FullPath, lastSeasonString);
+			int episodeNumber = Utils.SeasonMetaFile.GetLastPlayedEpisode(seasonPath);
+
+			List<string> episodeList = Directory.GetFiles(seasonPath).ToList();
+
+			launchPlayerPage(episodeList, episodeNumber);
+		}
+
+		private void launchPlayerPage(List<string> i_EpisodeList, int i_EpisodeNumber)
+		{
+			string pathToSeason = Path.GetDirectoryName(i_EpisodeList[0]);
+			Utils.SeasonMetaFile file = new Utils.SeasonMetaFile(pathToSeason);
+			file.SetLastPlayedEpisode("E" + i_EpisodeNumber);
+			PlayerPage player = new PlayerPage(i_EpisodeList, i_EpisodeNumber);
+			NavigationService.Navigate(player);
 		}
 	}
 }
