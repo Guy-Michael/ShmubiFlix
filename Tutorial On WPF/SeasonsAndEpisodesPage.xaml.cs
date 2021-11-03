@@ -41,8 +41,10 @@ namespace CustomMediaControls
 			foreach (string seasonPath in seasons)
 			{
 				Button seasonX = new Button();
-				seasonX.Height = 50;
+				seasonX.Height = 30;
 				seasonX.Content = Path.GetFileName(seasonPath);
+				seasonX.Background = new SolidColorBrush(Color.FromRgb(20, 20, 20));
+				seasonX.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 				seasonX.Click += button_Season_Pressed;
 				SeasonStack.Children.Add(seasonX);
 			}
@@ -61,13 +63,15 @@ namespace CustomMediaControls
 			foreach (string episode in m_CurrentSeasonEpisodeList)
 			{
 				EpisodeButton EpisodeX = new EpisodeButton();
-				EpisodeX.Height = 50;
+				EpisodeX.Height = 30;
 
 				int index = episode.LastIndexOf(@"\");
 				string currentEpisode = episode.Substring(index + 1);
 
 				EpisodeX.EpisodeNumber = episodeNumber++;
 				EpisodeX.Content = currentEpisode;
+				EpisodeX.Background = new SolidColorBrush(Color.FromRgb(20, 20, 20));
+				EpisodeX.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 				EpisodeX.Click += button_Episode_Click;
 				EpisodeStack.Children.Add(EpisodeX);
 			}

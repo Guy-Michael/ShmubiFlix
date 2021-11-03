@@ -37,6 +37,10 @@ namespace CustomMediaControls
 			try
 			{
 				MainFrame.NavigationService.GoBack();
+				//MainFrame.NavigationService.Refresh();
+				Window window = Window.GetWindow(this);
+				window.WindowStyle = WindowStyle.SingleBorderWindow;
+				window.WindowState = WindowState.Normal;
 			}
 			catch (InvalidOperationException e)
 			{

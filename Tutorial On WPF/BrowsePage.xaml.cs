@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace CustomMediaControls
 {
@@ -24,9 +25,9 @@ namespace CustomMediaControls
 		private string m_FullPath;
 		public BrowsePage()
 		{
-			m_FullPath = @"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison";
+			//m_FullPath = @"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison";
 			InitializeComponent();
-			InitBrowswPage();
+			//InitBrowswPage();
 		}
 
 		public void InitBrowswPage()
@@ -102,6 +103,17 @@ namespace CustomMediaControls
 			metaStream.WriteLine(titleString);
 			metaStream.WriteLine(numberOfSeasonsString);
 			metaStream.Close();
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			FolderBrowserDialog dialog = new FolderBrowserDialog();
+			DialogResult result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				m_FullPath = dialog.SelectedPath;
+				InitBrowswPage();
+			}
 		}
 	}
 }

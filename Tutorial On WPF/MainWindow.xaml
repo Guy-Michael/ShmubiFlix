@@ -9,20 +9,24 @@
 
     <Grid Background="#FF2F2E2E">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
 
-        <Frame x:Name="MainFrame" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" NavigationUIVisibility="Hidden" Background="#FF2F2E2E"/>
-        <local:BackButton x:Name="backButton" Background="#FFD20202" Margin="50,50,654.571,282" Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Frame x:Name="MainFrame" Grid.RowSpan="3" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" Background="#FF2F2E2E" Margin="0,10,0.286,-0.286"/>
+        <local:BackButton x:Name="backButton" Grid.Row ="0" Grid.Column="0" Content="">
+            <local:BackButton.Background>
+                <ImageBrush ImageSource="Resources/back button.png"/>
+            </local:BackButton.Background>
+        </local:BackButton>
 
     </Grid>
 

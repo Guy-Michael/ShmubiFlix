@@ -37,7 +37,7 @@ namespace CustomMediaControls
 			initMetaFile(i_EpisodeList[0]);
 			SetMedia(i_EpisodeList, i_EpisodeNumber);
 			InitEventListeners();
-			//fullScreen();
+			KeepAlive = false;
 		}
 
 		private void initMetaFile(string i_PathToEpisode1)
@@ -110,6 +110,7 @@ namespace CustomMediaControls
 			Player.ButtonSkipForward.Click += button_SkipForward;
 			Player.MouseDoubleClick += player_DoubleClick;
 			metaStopWatch.Elapsed += metaTimer_Elapsed;
+			Player.Player.MediaEnded += button_NextEpisode;
 
 		}
 

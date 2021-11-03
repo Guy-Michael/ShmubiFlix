@@ -42,6 +42,7 @@ namespace CustomMediaControls
 
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
+
 			Player.Source = new Uri(i_PathToEpisode, UriKind.RelativeOrAbsolute);
 			Player.Position = i_StartingPosition;
 			//Player.Source = new Uri(@"C:\Users\Guy\Desktop\videos\chapi 2.mp4", UriKind.RelativeOrAbsolute);
@@ -66,8 +67,20 @@ namespace CustomMediaControls
 			playButton.Click += CancelToken;
 
 			Player.MouseUp += mouse_Click;
+			//slider.ValueChanged += slider_ValueChanged;
 
 		}
+
+		//private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		//{
+		//	double seconds = Player.Position.TotalSeconds;
+		//	double newSliderValue = slider.Value / 100d;
+		//	double finalValue = slider.Value * seconds;
+
+		//	TimeSpan span = TimeSpan.FromSeconds(finalValue);
+		//	MessageBox.Show(seconds.ToString());
+		//	Player.Position = span;
+		//}
 
 		private void mouse_Click(object sender, MouseButtonEventArgs e)
 		{

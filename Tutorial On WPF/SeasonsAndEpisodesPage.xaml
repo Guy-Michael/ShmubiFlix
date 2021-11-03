@@ -29,7 +29,7 @@
             <StackPanel x:Name="SeasonStack" Grid.Column="1" Grid.Row="1" CanVerticallyScroll="True"/>
         </ScrollViewer>
 
-        <Button x:Name="PlayLastButton" Grid.Row="2" Grid.Column="1" Height="30" Content="Play Last Episode" Click="PlayLastButton_Click"/>
+        <Button x:Name="PlayLastButton" Grid.Row="2" Grid.Column="1" Height="30" Content="Play Last Episode" Click="PlayLastButton_Click" Background="#FF141414" Foreground="White"/>
 
 
         <StackPanel Grid.Column="2" Grid.RowSpan="8"/>
