@@ -97,6 +97,7 @@
     <Compile Include="Thumbnail.xaml.cs">
       <DependentUpon>Thumbnail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\AppMetaFile.cs" />
     <Compile Include="Utils\SeasonMetaFile.cs" />
     <Compile Include="Utils\SeriesMetaFile.cs" />
     <Page Include="BackButton.xaml">
@@ -189,6 +190,9 @@
   <ItemGroup>
     <Resource Include="Resources\Thumbnails\gossip girl.jpg" />
     <Resource Include="Resources\Thumbnails\Orange Is The New Black.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\shmubiflix.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

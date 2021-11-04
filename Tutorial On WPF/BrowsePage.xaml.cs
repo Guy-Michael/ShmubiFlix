@@ -27,12 +27,20 @@ namespace CustomMediaControls
 		{
 			//m_FullPath = @"C:\Users\Guy\Documents\That70sGossipGirlShowInPrison";
 			InitializeComponent();
-			//InitBrowswPage();
+			//checkForAppMetaFile();
+			InitBrowswPage();
 		}
 
 		public void InitBrowswPage()
 		{
+			if (!Utils.AppMetaFile.Exists())
+				return;
+
+			checkForAppMetaFile();
+
 			checkForSeriesMetaFiles();
+
+
 			List<Thumbnail> thumbnails = new List<Thumbnail>();
 
 			string[] directories = Directory.GetDirectories(m_FullPath);
@@ -59,6 +67,14 @@ namespace CustomMediaControls
 			for(int i = 0; i < thumbnails.Count; i++)
 			{
 				thumbnails[i].InitThumbnail(list[i]);
+			}
+		}
+
+		private void checkForAppMetaFile()
+		{
+			if (Utils.AppMetaFile.Exists())
+			{
+				m_FullPath = Utils.AppMetaFile.GetPathToVideoFolder();
 			}
 		}
 
@@ -106,6 +122,8 @@ namespace CustomMediaControls
 			if (result == DialogResult.OK)
 			{
 				m_FullPath = dialog.SelectedPath;
+				Utils.AppMetaFile.SetPathToVideoFolder(m_FullPath);
+
 				InitBrowswPage();
 			}
 		}

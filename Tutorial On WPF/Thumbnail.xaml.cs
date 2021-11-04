@@ -31,7 +31,7 @@ namespace CustomMediaControls
 		public void InitThumbnail(string i_FolderPath)
 		{
 			string[] fileName = Directory.GetFiles(i_FolderPath, "*.meta");
-			string[] thumbnailFolders = Directory.GetDirectories(i_FolderPath, "*" + "Thumbnails" + "*");
+			string[] thumbnailFolders = Directory.GetDirectories(i_FolderPath, "Thumbnails");
 
 			string[] thumbnails = Directory.GetFiles(thumbnailFolders[0]);
 

@@ -41,6 +41,11 @@ namespace CustomMediaControls
 			int seasonNumber = 1;
 			foreach (string seasonPath in seasons)
 			{
+				if (seasonPath.Contains("Thumbnails"))
+				{
+					continue;
+				}
+
 				Button seasonX = new Button();
 				seasonX.Height = 30;
 				seasonX.Content = Path.GetFileName(seasonPath);
