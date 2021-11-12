@@ -11,10 +11,5 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-            
-            
-
-        <!--<Button x:Name="button"  Grid.RowSpan="2"/>
-        <TextBlock x:Name="Title"  Grid.Row="1" FontSize="36"/>-->
     </Grid>
 </Button>

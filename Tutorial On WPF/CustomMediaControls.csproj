@@ -185,13 +185,6 @@
     <Resource Include="Resources\back button.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Thumbnails\that 70 show.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Thumbnails\gossip girl.jpg" />
-    <Resource Include="Resources\Thumbnails\Orange Is The New Black.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\shmubiflix.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
