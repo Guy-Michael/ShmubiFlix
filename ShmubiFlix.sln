@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMediaControls", "ShmubiFlix\CustomMediaControls.csproj", "{0235D745-FC22-4B07-9399-169206665039}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMediaControls", "ShmubiFlix\ShmubiFlix.csproj", "{0235D745-FC22-4B07-9399-169206665039}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomControls\CustomControls.csproj", "{F130EF8B-8867-40AA-87B8-BEAA62E41677}"
 EndProject
