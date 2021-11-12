@@ -11,11 +11,9 @@ In order to use the application, you will need to first compile it locally and t
   
 2.Structuring the media folder:
   Your media folder should follow this structure:
-  
-           
-           ![image](https://user-images.githubusercontent.com/46720575/141454491-a25f220e-1b6b-48b6-9837-1c58b42df11c.png)
+	
+	![image](https://user-images.githubusercontent.com/46720575/141455714-bc3a6a1a-8bdf-46f3-9589-f0f7fe3fd2d2.png)
 
-           
  Series1 and Series2 should be replaced with your series name
  Thumbnails folder should contain a .jpg file with a thumbnail image for the series.
   
