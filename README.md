@@ -12,7 +12,7 @@ In order to use the application, you will need to first compile it locally and t
 
   		1.1 Clone the repository
   
- 		1.2 Launch via Visual Studio
+ 		1.2 open .sln file (Requiers Visual Studio 2019)
   
  		1.3 Compile and launch
   
