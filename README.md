@@ -27,6 +27,8 @@ Thumbnails folder should contain a .jpg file with a thumbnail image for the seri
   
 After running the application, click the "Set root folder" button and select the root of your media foler. 
 ## Known bugs
+-App crashes if no "Thumbnails" folder is contained inside each series folder.
+-"Play last episode" button plays the wrong episode, sometimes.
 -Media playback won't stop if you press the go back button.
 -Hovering the mouse over a series thumbnail will make the image disappear.
 -Application crashes when finished playing the last file of a season.
