@@ -206,14 +206,51 @@ namespace CustomMediaControls.Utils
 			return int.Parse(oldEpisode);
 		}
 
-		private static List<string> extractDataFromMetaFile(string i_PathToFile)
+		public static void SetLastPlayedEpisode(string i_PathToMetaFileFolder, int i_EpisodeNumber)
+		{
+			List<string> data = extractDataFromMetaFile(i_PathToMetaFileFolder);
+			string metaFilePath = GetMetaFilePathFromFolderPath(i_PathToMetaFileFolder);
+			string chosenLine = string.Empty;
+			int lineIndex = 0;
+			foreach (string line in data)
+			{
+				if (line.Contains("Last-played-episode"))
+				{
+					chosenLine = line;
+					break;
+				}
+
+				lineIndex++;
+			}
+
+			if (chosenLine.Equals(string.Empty))
+			{
+				return;
+			}
+
+			int colonIndex = chosenLine.LastIndexOf(":");
+			string oldEpisode = chosenLine.Substring(colonIndex + 1);
+
+			string newEpisode = "E" + i_EpisodeNumber;
+			chosenLine = chosenLine.Replace(oldEpisode, newEpisode);
+
+			data[lineIndex] = chosenLine;
+			File.WriteAllLines(metaFilePath, data);
+		}
+		private static List<string> extractDataFromMetaFile(string i_PathToFolder)
 		{
 
-			string[] metaFiles = Directory.GetFiles(i_PathToFile, "*.meta");
+			string[] metaFiles = Directory.GetFiles(i_PathToFolder, "*.meta");
 			List<string> list = File.ReadAllLines(metaFiles[0]).ToList();
 			//List<string> list = File.ReadAllLines(i_PathToFile).ToList();
 			return list;
 		}
+		
+		public static string GetMetaFilePathFromFolderPath(string i_FolderPath)
+		{
+			return Directory.GetFiles(i_FolderPath, "*.meta")[0];
+		}
+		
 		private static string generateSeasonMetadata(string i_FolderPath)
 		{
 			string metaFileName = Path.GetFileName(i_FolderPath) + ".meta";

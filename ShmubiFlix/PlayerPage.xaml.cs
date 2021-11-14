@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CustomMediaControls
 {
@@ -141,6 +131,7 @@ namespace CustomMediaControls
 				return;
 
 			Player.SkipToEpisode(EpisodeList[--CurrentEpisodeNumber]);
+			UpdateLastPlayedEpisode(CurrentEpisodeNumber);
 		}
 
 		public void button_NextEpisode(object sender, EventArgs args)
@@ -149,7 +140,13 @@ namespace CustomMediaControls
 				return;
 
 			Player.SkipToEpisode(EpisodeList[++CurrentEpisodeNumber]);
+			UpdateLastPlayedEpisode(CurrentEpisodeNumber);
+		}
 
+		public void UpdateLastPlayedEpisode(int i_EpisodeNumber)
+		{
+			string seasonPath = Path.GetDirectoryName(EpisodeList[0]);
+			Utils.SeasonMetaFile.SetLastPlayedEpisode(seasonPath, i_EpisodeNumber);
 		}
 	}
 }

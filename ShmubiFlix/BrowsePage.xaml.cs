@@ -45,24 +45,16 @@ namespace CustomMediaControls
 
 			string[] directories = Directory.GetDirectories(m_FullPath);
 
-			//for(int i = 0; i < directories.Length; i++)
-			//{
-			//	Thumbnail nail = new Thumbnail();
-			//	nail.Click += thumbnail_LoadSeries;
-			//	thumbnails.Add(nail);
-			//}
-			thumbnail1.Click += thumbnail_LoadSeries;
-			thumbnails.Add(thumbnail1);
-
-			thumbnail2.Click += thumbnail_LoadSeries;
-			thumbnails.Add(thumbnail2);
-
-			thumbnail3.Click += thumbnail_LoadSeries;
-			thumbnails.Add(thumbnail3);
-
+			for (int i = 0; i < directories.Length; i++)
+			{
+				Thumbnail nail = new Thumbnail();
+				nail.Click += thumbnail_LoadSeries;
+				thumbnails.Add(nail);
+				Unigrid.Children.Add(nail);
+			}
+			
 			//Choose root folder.
 			List<string> list = Directory.EnumerateDirectories(m_FullPath).ToList();
-			
 			
 			for(int i = 0; i < thumbnails.Count; i++)
 			{
@@ -115,7 +107,7 @@ namespace CustomMediaControls
 			metaStream.Close();
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void SetRootFolder_Click(object sender, RoutedEventArgs e)
 		{
 			FolderBrowserDialog dialog = new FolderBrowserDialog();
 			DialogResult result = dialog.ShowDialog();
