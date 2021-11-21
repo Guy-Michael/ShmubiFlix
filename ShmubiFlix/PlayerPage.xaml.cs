@@ -51,6 +51,8 @@ namespace CustomMediaControls
 
 		private void OnMetaTimerElapsed()
 		{
+			//SetEpisodePosition accesses data from the video player, which lives on another thread.
+			//To access in on runtime, the call must be places in the dispatcher stack to be called when appropriate. 
 			this.Dispatcher.Invoke(() =>
 			{
 				TimeSpan span = Player.Player.Position;
