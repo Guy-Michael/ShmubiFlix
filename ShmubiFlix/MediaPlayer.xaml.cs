@@ -19,6 +19,7 @@ using System.Timers;
 
 namespace CustomMediaControls
 {
+	// Adding a meaningful comment
 	/// <summary>
 	/// Interaction logic for UserControl1.xaml
 	/// </summary>
