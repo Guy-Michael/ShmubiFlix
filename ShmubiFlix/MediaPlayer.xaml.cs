@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Timers;
+using CustomMediaControls.delegates;
 
 namespace CustomMediaControls
 {
@@ -32,6 +33,9 @@ namespace CustomMediaControls
 
 		bool m_IsVideoPlaying;
 		CancellationTokenSource m_TaskCancellationToken;
+		public event BackButtonClickedEventHandler m_BackButtonClicked;
+
+		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
 
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
@@ -39,7 +43,13 @@ namespace CustomMediaControls
 			Player.Position = i_StartingPosition;
 			Player.Play();
 			m_IsVideoPlaying = true;
+			
 		}
+
+		private void testc()
+        {
+            Console.WriteLine("test");
+        }
 
 		public void InitEverything(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
@@ -101,11 +111,10 @@ namespace CustomMediaControls
 		{
 			Player.Source = i_Source;
 		}
-
-		public bool IsPlaying()
-		{
-			return m_IsVideoPlaying;
-		}
 	
+		internal void stopPlayback()
+        {
+			Player.Close();
+        }
 	}
 }

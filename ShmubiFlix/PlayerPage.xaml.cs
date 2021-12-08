@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using CustomMediaControls.interfaces;
 
 namespace CustomMediaControls
 {
 	/// <summary>
 	/// Interaction logic for PlayerPage.xaml
 	/// </summary>
-	public partial class PlayerPage : Page
+	public partial class PlayerPage : Page, i_Navigateable
 	{
 		public List<string> EpisodeList { get; set; }
 
@@ -150,5 +151,10 @@ namespace CustomMediaControls
 			string seasonPath = Path.GetDirectoryName(EpisodeList[0]);
 			Utils.SeasonMetaFile.SetLastPlayedEpisode(seasonPath, i_EpisodeNumber);
 		}
-	}
+
+		internal void stopPlayback()
+        {
+			Player.stopPlayback();
+        }
+    }
 }

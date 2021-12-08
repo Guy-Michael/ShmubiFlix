@@ -25,6 +25,7 @@ namespace CustomMediaControls
 			InitializeComponent();
 			backButton.Click += BackButton_Click;
 			MainFrame.Navigate(new BrowsePage());
+			
 		}
 
 		private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -36,6 +37,12 @@ namespace CustomMediaControls
 		{
 			try
 			{
+				if (MainFrame.NavigationService.Content.ToString().Contains("PlayerPage"))
+                {
+					PlayerPage playerPage = (PlayerPage) MainFrame.NavigationService.Content;
+					playerPage.stopPlayback();
+				}
+				
 				MainFrame.NavigationService.GoBack();
 				//MainFrame.NavigationService.Refresh();
 				Window window = Window.GetWindow(this);
