@@ -22,7 +22,7 @@
 
 
         <Frame x:Name="MainFrame" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden" Background="#FF2F2E2E"/>
-        <local:BackButton x:Name="backButton" Grid.Row ="0" Grid.Column="0" Content="">
+        <local:BackButton x:Name="backButton" x:FieldModifier="public" Grid.Row ="0" Grid.Column="0" Content="">
             <local:BackButton.Background>
                 <ImageBrush ImageSource="Resources/back button.png"/>
             </local:BackButton.Background>

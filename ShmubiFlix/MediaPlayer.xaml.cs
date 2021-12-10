@@ -33,7 +33,6 @@ namespace CustomMediaControls
 
 		bool m_IsVideoPlaying;
 		CancellationTokenSource m_TaskCancellationToken;
-		public event BackButtonClickedEventHandler m_BackButtonClicked;
 
 		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CustomMediaControls.interfaces;
 
 namespace CustomMediaControls
 {
@@ -25,7 +26,6 @@ namespace CustomMediaControls
 			InitializeComponent();
 			backButton.Click += BackButton_Click;
 			MainFrame.Navigate(new BrowsePage());
-			
 		}
 
 		private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -37,13 +37,16 @@ namespace CustomMediaControls
 		{
 			try
 			{
-				if (MainFrame.NavigationService.Content.ToString().Contains("PlayerPage"))
+				// query type of current frame
+				Type currentInnerFrameType = MainFrame.NavigationService.Content.GetType();
+
+				// check if the frame is an instance of PlayerPage
+                if (currentInnerFrameType.IsAssignableFrom(typeof(PlayerPage)))
                 {
-					PlayerPage playerPage = (PlayerPage) MainFrame.NavigationService.Content;
-					playerPage.stopPlayback();
+					((INavigable) MainFrame.NavigationService.Content).ApplyGoBackSideEffects();
 				}
-				
-				MainFrame.NavigationService.GoBack();
+
+                MainFrame.NavigationService.GoBack();
 				//MainFrame.NavigationService.Refresh();
 				Window window = Window.GetWindow(this);
 				window.WindowStyle = WindowStyle.SingleBorderWindow;
