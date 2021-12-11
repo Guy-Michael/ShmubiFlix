@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CustomMediaControls.interfaces;
 
 namespace CustomMediaControls
 {
@@ -35,17 +36,32 @@ namespace CustomMediaControls
 		private void navigateBack()
 		{
 			try
-			{
-				MainFrame.NavigationService.GoBack();
-				//MainFrame.NavigationService.Refresh();
-				Window window = Window.GetWindow(this);
-				window.WindowStyle = WindowStyle.SingleBorderWindow;
-				window.WindowState = WindowState.Normal;
-			}
-			catch (InvalidOperationException e)
+            {
+                if (isCurrentFramePlayerPage())
+                {
+                    stopMediaPlayback();
+                }
+
+                MainFrame.NavigationService.GoBack();
+                //MainFrame.NavigationService.Refresh();
+                Window window = Window.GetWindow(this);
+                window.WindowStyle = WindowStyle.SingleBorderWindow;
+                window.WindowState = WindowState.Normal;
+            }
+            catch (InvalidOperationException e)
 			{
 				Console.WriteLine("Attempted to navigate backwards with the stack was empty.");
 			}
 		}
-	}
+
+        private Boolean isCurrentFramePlayerPage()
+        {
+            return MainFrame.NavigationService.Content as INavigable != null;
+        }
+
+        private void stopMediaPlayback()
+        {
+            (MainFrame.NavigationService.Content as INavigable).ApplyGoBackSideEffects();
+        }
+    }
 }

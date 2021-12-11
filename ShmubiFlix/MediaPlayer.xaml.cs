@@ -19,6 +19,7 @@ using System.Timers;
 
 namespace CustomMediaControls
 {
+	// Adding a meaningful comment
 	/// <summary>
 	/// Interaction logic for UserControl1.xaml
 	/// </summary>
@@ -31,6 +32,8 @@ namespace CustomMediaControls
 
 		bool m_IsVideoPlaying;
 		CancellationTokenSource m_TaskCancellationToken;
+
+		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
 
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
@@ -100,11 +103,10 @@ namespace CustomMediaControls
 		{
 			Player.Source = i_Source;
 		}
-
-		public bool IsPlaying()
-		{
-			return m_IsVideoPlaying;
-		}
 	
+		internal void stopPlayback()
+    {
+			Player.Close();
+    }
 	}
 }

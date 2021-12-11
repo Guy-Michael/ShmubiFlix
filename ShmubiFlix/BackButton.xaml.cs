@@ -25,7 +25,5 @@ namespace CustomMediaControls
 			InitializeComponent();
 			Content = "Back";
 		}
-
-
 	}
 }
