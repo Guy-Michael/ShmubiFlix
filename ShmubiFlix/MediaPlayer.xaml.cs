@@ -16,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Timers;
-using CustomMediaControls.delegates;
 
 namespace CustomMediaControls
 {
@@ -42,13 +41,7 @@ namespace CustomMediaControls
 			Player.Position = i_StartingPosition;
 			Player.Play();
 			m_IsVideoPlaying = true;
-			
 		}
-
-		private void testc()
-        {
-            Console.WriteLine("test");
-        }
 
 		public void InitEverything(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
@@ -57,7 +50,6 @@ namespace CustomMediaControls
 			playButton.Click += buttonPlay_Click;
 			Player.MouseUp += mouse_Click;
 		}
-
 
 		private void mouse_Click(object sender, MouseButtonEventArgs e)
 		{

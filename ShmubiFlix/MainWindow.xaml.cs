@@ -36,26 +36,32 @@ namespace CustomMediaControls
 		private void navigateBack()
 		{
 			try
-			{
-				// query type of current frame
-				Type currentInnerFrameType = MainFrame.NavigationService.Content.GetType();
-
-				// check if the frame is an instance of PlayerPage
-                if (currentInnerFrameType.IsAssignableFrom(typeof(PlayerPage)))
+            {
+                if (isCurrentFramePlayerPage())
                 {
-					((INavigable) MainFrame.NavigationService.Content).ApplyGoBackSideEffects();
-				}
+                    stopMediaPlayback();
+                }
 
                 MainFrame.NavigationService.GoBack();
-				//MainFrame.NavigationService.Refresh();
-				Window window = Window.GetWindow(this);
-				window.WindowStyle = WindowStyle.SingleBorderWindow;
-				window.WindowState = WindowState.Normal;
-			}
-			catch (InvalidOperationException e)
+                //MainFrame.NavigationService.Refresh();
+                Window window = Window.GetWindow(this);
+                window.WindowStyle = WindowStyle.SingleBorderWindow;
+                window.WindowState = WindowState.Normal;
+            }
+            catch (InvalidOperationException e)
 			{
 				Console.WriteLine("Attempted to navigate backwards with the stack was empty.");
 			}
 		}
-	}
+
+        private Boolean isCurrentFramePlayerPage()
+        {
+            return MainFrame.NavigationService.Content as INavigable != null;
+        }
+
+        private void stopMediaPlayback()
+        {
+            (MainFrame.NavigationService.Content as INavigable).ApplyGoBackSideEffects();
+        }
+    }
 }
