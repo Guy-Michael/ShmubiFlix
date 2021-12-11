@@ -85,6 +85,7 @@
     <Compile Include="EpisodeButton.xaml.cs">
       <DependentUpon>EpisodeButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="interfaces\INavigable.cs" />
     <Compile Include="MediaPlayer.xaml.cs">
       <DependentUpon>MediaPlayer.xaml</DependentUpon>
     </Compile>
