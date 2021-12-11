@@ -51,6 +51,7 @@ namespace CustomMediaControls
 			Player.MouseUp += mouse_Click;
 		}
 
+
 		private void mouse_Click(object sender, MouseButtonEventArgs e)
 		{
 			if (m_IsVideoPlaying)
@@ -104,8 +105,8 @@ namespace CustomMediaControls
 		}
 	
 		internal void stopPlayback()
-        {
+    {
 			Player.Close();
-        }
+    }
 	}
 }
