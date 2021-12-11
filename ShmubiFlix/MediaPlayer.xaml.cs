@@ -33,6 +33,8 @@ namespace CustomMediaControls
 		bool m_IsVideoPlaying;
 		CancellationTokenSource m_TaskCancellationToken;
 
+		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
+
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
 			Player.Source = new Uri(i_PathToEpisode, UriKind.RelativeOrAbsolute);
@@ -48,7 +50,6 @@ namespace CustomMediaControls
 			playButton.Click += buttonPlay_Click;
 			Player.MouseUp += mouse_Click;
 		}
-
 
 		private void mouse_Click(object sender, MouseButtonEventArgs e)
 		{
@@ -101,11 +102,10 @@ namespace CustomMediaControls
 		{
 			Player.Source = i_Source;
 		}
-
-		public bool IsPlaying()
-		{
-			return m_IsVideoPlaying;
-		}
 	
+		internal void stopPlayback()
+        {
+			Player.Close();
+        }
 	}
 }
