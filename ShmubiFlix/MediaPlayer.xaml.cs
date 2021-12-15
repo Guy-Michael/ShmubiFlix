@@ -28,6 +28,7 @@ namespace CustomMediaControls
 		public MediaPlayer()
 		{
 			InitializeComponent();
+
 			slider.AddHandler(MouseLeftButtonUpEvent,
 					  new MouseButtonEventHandler(slider_MouseLeftButtonUp),
 					  true);
@@ -36,6 +37,8 @@ namespace CustomMediaControls
 		bool m_IsVideoPlaying;
 		CancellationTokenSource m_TaskCancellationToken;
 		private TimeSpan TotalTime; // need to integrate this field with existing time span
+
+		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
 
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
@@ -112,6 +115,13 @@ namespace CustomMediaControls
 		{
 			Player.Source = i_Source;
 		}
+
+	
+		internal void stopPlayback()
+    {
+			Player.Close();
+    }
+
 
 		public bool IsPlaying()
 		{
