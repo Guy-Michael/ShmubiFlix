@@ -19,7 +19,6 @@ using System.Timers;
 
 namespace CustomMediaControls
 {
-	// Adding a meaningful comment
 	/// <summary>
 	/// Interaction logic for UserControl1.xaml
 	/// </summary>
@@ -28,10 +27,15 @@ namespace CustomMediaControls
 		public MediaPlayer()
 		{
 			InitializeComponent();
+
+			slider.AddHandler(MouseLeftButtonUpEvent,
+					  new MouseButtonEventHandler(slider_MouseLeftButtonUp),
+					  true);
 		}
 
 		bool m_IsVideoPlaying;
 		CancellationTokenSource m_TaskCancellationToken;
+		private TimeSpan m_TotalTime; // need to integrate this field with existing time span
 
 		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
 
@@ -51,6 +55,13 @@ namespace CustomMediaControls
 			Player.MouseUp += mouse_Click;
 		}
 
+		private void slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			if (m_TotalTime.TotalSeconds > 0)
+			{
+				Player.Position = TimeSpan.FromSeconds(slider.Value * m_TotalTime.TotalSeconds);
+			}
+		}
 
 		private void mouse_Click(object sender, MouseButtonEventArgs e)
 		{
@@ -108,5 +119,50 @@ namespace CustomMediaControls
     {
 			Player.Close();
     }
+
+		public bool IsPlaying()
+		{
+			return m_IsVideoPlaying;
+		}
+
+        private void Player_MediaOpened(object sender, RoutedEventArgs e)
+        {
+			m_TotalTime = Player.NaturalDuration.TimeSpan;
+
+			// Create a timer that will update the counters and the time slider
+			DispatcherTimer timerVideoTime = new DispatcherTimer();
+			timerVideoTime.Interval = TimeSpan.FromSeconds(1);
+			timerVideoTime.Tick += new EventHandler(timer_Tick);
+			timerVideoTime.Start();
+		}
+
+		private void timer_Tick(object sender, EventArgs e)
+		{
+			// Check if the movie finished calculate it's total time
+			if (Player.NaturalDuration.TimeSpan.TotalSeconds > 0)
+			{
+				if (m_TotalTime.TotalSeconds > 0)
+				{
+					// Updating time slider
+					slider.Value = Player.Position.TotalSeconds /
+									   m_TotalTime.TotalSeconds;
+				}
+			}
+		}
+
+		internal void setSliderVisibility(Visibility i_Visibility)
+		{
+			slider.Visibility = i_Visibility;
+		}
+
+		private void Grid_MouseEnter(object sender, MouseEventArgs e)
+		{
+			setSliderVisibility(Visibility.Visible);
+		}
+
+		private void Grid_MouseLeave(object sender, MouseEventArgs e)
+		{
+			setSliderVisibility(Visibility.Hidden);
+		}
 	}
 }

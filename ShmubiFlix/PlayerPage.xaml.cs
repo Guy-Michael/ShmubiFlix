@@ -151,15 +151,14 @@ namespace CustomMediaControls
 			Utils.SeasonMetaFile.SetLastPlayedEpisode(seasonPath, i_EpisodeNumber);
 		}
 
-
 	  	internal void stopPlayback()
-    {
+		{
 			Player.stopPlayback();
-    }
+		}
 
-    public void ApplyGoBackSideEffects()
-    {
-			stopPlayback();
-    }
+		public void ApplyGoBackSideEffects()
+		{
+				stopPlayback();
+		}
 	}
 }
