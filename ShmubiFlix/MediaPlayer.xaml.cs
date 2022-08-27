@@ -34,7 +34,6 @@ namespace CustomMediaControls
 		}
 
 		bool m_IsVideoPlaying;
-		CancellationTokenSource m_TaskCancellationToken;
 		private TimeSpan m_TotalTime; // need to integrate this field with existing time span
 
 		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
@@ -49,7 +48,6 @@ namespace CustomMediaControls
 
 		public void InitEverything(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
-			m_TaskCancellationToken = new CancellationTokenSource();
 			InitMediaElement(i_PathToEpisode, i_StartingPosition);
 			playButton.Click += buttonPlay_Click;
 			Player.MouseUp += mouse_Click;
@@ -139,30 +137,18 @@ namespace CustomMediaControls
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			// Check if the movie finished calculate it's total time
-			if (Player.NaturalDuration.TimeSpan.TotalSeconds > 0)
+			if(Player.NaturalDuration.HasTimeSpan)
 			{
-				if (m_TotalTime.TotalSeconds > 0)
+				if (Player.NaturalDuration.TimeSpan.TotalSeconds > 0)
 				{
-					// Updating time slider
-					slider.Value = Player.Position.TotalSeconds /
-									   m_TotalTime.TotalSeconds;
+					if (m_TotalTime.TotalSeconds > 0)
+					{
+						// Updating time slider
+						slider.Value = Player.Position.TotalSeconds /
+										   m_TotalTime.TotalSeconds;
+					}
 				}
 			}
-		}
-
-		internal void setSliderVisibility(Visibility i_Visibility)
-		{
-			slider.Visibility = i_Visibility;
-		}
-
-		private void Grid_MouseEnter(object sender, MouseEventArgs e)
-		{
-			setSliderVisibility(Visibility.Visible);
-		}
-
-		private void Grid_MouseLeave(object sender, MouseEventArgs e)
-		{
-			setSliderVisibility(Visibility.Hidden);
 		}
 	}
 }

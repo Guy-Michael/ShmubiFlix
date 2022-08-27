@@ -6,13 +6,32 @@
              xmlns:local="clr-namespace:CustomMediaControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
-        <MediaElement x:Name="Player" LoadedBehavior="Manual" UnloadedBehavior="Manual" Stretch="Fill" MediaOpened="Player_MediaOpened"/>
-        <Button x:Name="playButton" Width="30" Height="30" Visibility="Hidden"/>
-        <Button x:Name="ButtonNextEpisode" Content="Next" Width="30" Height="30" Margin="501,210,269,210.286" Visibility="Hidden" />
-        <Button x:Name="ButtonPrevEpisode" Content="Prev" Width="30" Height="30" Margin="252,210,518,210.286" Visibility="Hidden" />
-        <Button x:Name="ButtonSkipBackward" Content="back" Width="30" Height="30" Margin="309,210,461,210.286" Visibility="Hidden" />
-        <Button x:Name="ButtonSkipForward" Content="for" Width="30" Height="30" Margin="447,210,323,210.286" Visibility="Hidden" />
-        <Slider x:Name="slider" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Maximum="1" SmallChange="0.01" LargeChange="0.1" Visibility="Hidden"/>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="169*"/>
+            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="116*"/>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="114*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="Auto" MinHeight="49.143"/>
+            <RowDefinition Height="101*"/>
+            <RowDefinition Height="150*"/>
+        </Grid.RowDefinitions>
+
+        <MediaElement x:Name="Player" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="7"  LoadedBehavior="Manual" UnloadedBehavior="Manual" Stretch="Fill" MediaOpened="Player_MediaOpened" Margin="0,0,0,0.286"/>
+        <Button x:Name="playButton"  Visibility="Visible" Grid.Column="3" Grid.Row="2" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button x:Name="ButtonPrevEpisode" Content="Prev" Margin="10,10,10,10" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Visible" Grid.Row="2" />
+        <Button x:Name="ButtonSkipBackward" Content="-5" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Visible" Grid.Column="2" Grid.Row="2" />
+        <Button x:Name="ButtonSkipForward" Content="+5" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Visible" Grid.Column="4" Grid.Row="2" />
+        <Button x:Name="ButtonNextEpisode" Content="Next" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Visible" Grid.Column="5" Grid.Row="2" />
+        <Slider x:Name="slider" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" Maximum="1" SmallChange="0.01" LargeChange="0.05" Visibility="Visible" Height="18" Margin="0,0,0,0.286"/>
     </Grid>
 </UserControl>
