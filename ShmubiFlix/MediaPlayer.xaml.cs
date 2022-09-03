@@ -24,6 +24,10 @@ namespace CustomMediaControls
 	/// </summary>
 	public partial class MediaPlayer : UserControl
 	{
+		bool m_IsVideoPlaying;
+		private TimeSpan m_TotalTime; // need to integrate this field with existing time span
+		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
+
 		public MediaPlayer()
 		{
 			InitializeComponent();
@@ -32,11 +36,6 @@ namespace CustomMediaControls
 					  new MouseButtonEventHandler(slider_MouseLeftButtonUp),
 					  true);
 		}
-
-		bool m_IsVideoPlaying;
-		private TimeSpan m_TotalTime; // need to integrate this field with existing time span
-
-		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
 
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
@@ -78,7 +77,6 @@ namespace CustomMediaControls
 
 		public void buttonPlay_Click(object sender, EventArgs args)
 		{
-
 			if (m_IsVideoPlaying)
 			{
 				Player.Pause();
