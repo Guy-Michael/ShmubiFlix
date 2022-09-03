@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 using CustomMediaControls.interfaces;
 
@@ -64,7 +65,8 @@ namespace CustomMediaControls
 
 		public void player_DoubleClick(object sender, EventArgs args)
 		{
-			toggleFullScreen();
+			if(Mouse.DirectlyOver as MediaElement != null)
+				toggleFullScreen();
 		}
 
 		private void toggleFullScreen()
@@ -151,15 +153,14 @@ namespace CustomMediaControls
 			Utils.SeasonMetaFile.SetLastPlayedEpisode(seasonPath, i_EpisodeNumber);
 		}
 
-
 	  	internal void stopPlayback()
-    {
+		{
 			Player.stopPlayback();
-    }
+		}
 
-    public void ApplyGoBackSideEffects()
-    {
-			stopPlayback();
-    }
+		public void ApplyGoBackSideEffects()
+		{
+				stopPlayback();
+		}
 	}
 }
