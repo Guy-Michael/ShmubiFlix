@@ -114,9 +114,9 @@ namespace CustomMediaControls
 			CurrentEpisodeNumber = i_EpisodeNumber;
 			TimeSpan startingPosition;
 
-			string episodeName = System.IO.Path.GetFileName(i_EpisodeList[i_EpisodeNumber - 1]);
+			string episodeName = System.IO.Path.GetFileName(i_EpisodeList[i_EpisodeNumber]);
 			m_MetaFile.GetEpisodePosition(episodeName, out startingPosition);
-			Player.InitEverything(EpisodeList[CurrentEpisodeNumber-1], startingPosition);
+			Player.InitEverything(EpisodeList[CurrentEpisodeNumber], startingPosition);
 		}
 
 		public void button_SkipForward(object sender, EventArgs args)
@@ -140,10 +140,12 @@ namespace CustomMediaControls
 
 		public void button_NextEpisode(object sender, EventArgs args)
 		{
-			if (CurrentEpisodeNumber + 1 > EpisodeList.Count)
+			if (CurrentEpisodeNumber >= EpisodeList.Count - 1)
 				return;
 
-			Player.SkipToEpisode(EpisodeList[++CurrentEpisodeNumber]);
+			string nextEpisode = EpisodeList[CurrentEpisodeNumber + 1];
+			CurrentEpisodeNumber++;
+			Player.SkipToEpisode(nextEpisode);
 			UpdateLastPlayedEpisode(CurrentEpisodeNumber);
 		}
 
