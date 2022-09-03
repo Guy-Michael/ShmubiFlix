@@ -84,7 +84,7 @@ namespace CustomMediaControls
 
 			//Capture title
 			string title = allDetails[1].Trim();
-			title = title.Split('.')[0];
+			title = title.Substring(0, title.LastIndexOf('.'));
 			return $"{season} {episode} - {title}";
 		}
 		public void InitEverything(string i_PathToEpisode, TimeSpan i_StartingPosition)
