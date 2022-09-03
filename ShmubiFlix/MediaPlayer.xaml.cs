@@ -40,11 +40,34 @@ namespace CustomMediaControls
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
 			Player.Source = new Uri(i_PathToEpisode, UriKind.RelativeOrAbsolute);
+			EpisodeDetails.Text = formatEpisodeDetails(i_PathToEpisode);
 			Player.Position = i_StartingPosition;
 			Player.Play();
 			m_IsVideoPlaying = true;
 		}
 
+		private string formatEpisodeDetails(string fullDetails)
+		{
+			string trimmed = fullDetails.Split('\\').LastOrDefault();
+			//Season and episode details
+			string[] allDetails = trimmed.Split('-');
+			allDetails[0] = allDetails[0].Trim();
+			allDetails[0]= allDetails[0].Replace('E', '.');
+			allDetails[0] = allDetails[0].Replace("S", "");
+
+			string[] seasonAndEpisode = allDetails[0].Split('.');
+			
+			//Capture season
+			string season = $"Season {seasonAndEpisode[0]}";
+
+			//Capture Episode
+			string episode = $"Episode {seasonAndEpisode[1]}";
+
+			//Capture title
+			string title = allDetails[1].Trim();
+			title = title.Split('.')[0];
+			return $"{season} {episode} - {title}";
+		}
 		public void InitEverything(string i_PathToEpisode, TimeSpan i_StartingPosition)
 		{
 			InitMediaElement(i_PathToEpisode, i_StartingPosition);
@@ -102,6 +125,7 @@ namespace CustomMediaControls
 
 		public void SkipToEpisode(string i_Source)
 		{
+			EpisodeDetails.Text = formatEpisodeDetails(i_Source);
 			Uri newSource = new Uri(i_Source, UriKind.RelativeOrAbsolute);
 			Player.Source = newSource;
 		}
@@ -124,7 +148,6 @@ namespace CustomMediaControls
         private void Player_MediaOpened(object sender, RoutedEventArgs e)
         {
 			m_TotalTime = Player.NaturalDuration.TimeSpan;
-
 			// Create a timer that will update the counters and the time slider
 			DispatcherTimer timerVideoTime = new DispatcherTimer();
 			timerVideoTime.Interval = TimeSpan.FromSeconds(1);
