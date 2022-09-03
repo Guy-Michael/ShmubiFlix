@@ -27,14 +27,33 @@ namespace CustomMediaControls
 		bool m_IsVideoPlaying;
 		private TimeSpan m_TotalTime; // need to integrate this field with existing time span
 		public bool IsVideoPlaying { get { return m_IsVideoPlaying; } }
+		DispatcherTimer uiTimer;
 
 		public MediaPlayer()
 		{
 			InitializeComponent();
-
 			slider.AddHandler(MouseLeftButtonUpEvent,
 					  new MouseButtonEventHandler(slider_MouseLeftButtonUp),
 					  true);
+			MouseMove += MediaPlayer_MouseMove;
+			ToggleUI(Visibility.Hidden);
+			uiTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2)};
+		}
+
+		private void MediaPlayer_MouseMove(object sender, MouseEventArgs e)
+		{
+			ToggleUI(Visibility.Visible);
+			
+			if(uiTimer.IsEnabled)
+			{
+				uiTimer.Stop();
+			}
+			
+			uiTimer.Start();
+			uiTimer.Tick += (objectSender, args) =>
+			{
+				ToggleUI(Visibility.Hidden);
+			};
 		}
 
 		public void InitMediaElement(string i_PathToEpisode, TimeSpan i_StartingPosition)
@@ -170,6 +189,16 @@ namespace CustomMediaControls
 					}
 				}
 			}
+		}
+
+		public void ToggleUI(Visibility visibility)
+		{
+			ButtonPrevEpisode.Visibility = visibility;
+			ButtonSkipBackward.Visibility = visibility;
+			playButton.Visibility = visibility;
+			ButtonSkipForward.Visibility = visibility;
+			ButtonNextEpisode.Visibility = visibility;
+			EpisodeDetails.Visibility = visibility;
 		}
 	}
 }
