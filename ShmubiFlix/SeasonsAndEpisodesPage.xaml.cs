@@ -23,7 +23,7 @@ namespace CustomMediaControls
 	public partial class SeasonsAndEpisodesPage : Page
 	{
 		private string m_FullPath;
-		private string[] m_CurrentSeasonEpisodeList;
+		private List<string> m_CurrentSeasonEpisodeList;
 
 		public SeasonsAndEpisodesPage(string i_FolderPath, string i_SeriesName)
 		{
@@ -36,9 +36,9 @@ namespace CustomMediaControls
 		public void LoadSeries(string name)
 		{
 			m_FullPath = System.IO.Path.Combine(m_FullPath, name);
-			string[] seasons = Directory.GetDirectories(m_FullPath);
-
-			int seasonNumber = 1;
+			List<string> seasons = Directory.GetDirectories(m_FullPath).ToList();
+			seasons.Sort();
+			//int seasonNumber = 1;
 			foreach (string seasonPath in seasons)
 			{
 				if (seasonPath.Contains("Thumbnails"))
@@ -63,9 +63,10 @@ namespace CustomMediaControls
 			string extensions = @"*.mkv|*.avi|*.mp4|*.mpeg|*.flv";
 			string fullPath = System.IO.Path.Combine(m_FullPath, i_SeasonName);
 
-			m_CurrentSeasonEpisodeList = Directory.GetFiles(fullPath, "*.mp4");
-			
-			int episodeNumber = 1;
+			m_CurrentSeasonEpisodeList = Directory.GetFiles(fullPath, "*.mp4").ToList();
+			m_CurrentSeasonEpisodeList.Sort();
+
+			int episodeNumber = 0;
 			foreach (string episode in m_CurrentSeasonEpisodeList)
 			{
 				EpisodeButton EpisodeX = new EpisodeButton();
